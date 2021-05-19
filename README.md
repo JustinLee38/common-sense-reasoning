@@ -29,8 +29,8 @@ is illogical.
 
 ```bash
 $ # Get the code
-$ git clone https://github.com/JustinLee38/CommonSenseReasoning.git
-$ cd CommonSenseReasoning
+$ git clone https://github.com/JustinLee38/common-sense-reasoning.git
+$ cd common-sense-reasoning
 $
 $ # Virtualenv modules installation (Unix based systems)
 $ virtualenv env
