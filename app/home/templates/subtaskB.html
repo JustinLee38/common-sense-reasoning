@@ -1,0 +1,144 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Subtask B {% endblock title %}
+
+{% block content %}
+
+  <div class="header bg-primary pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-6 col-7">
+            <h6 class="h2 text-white d-inline-block mb-0">Subtask B</h6>
+            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+              <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="#">Task</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Subtask B</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Page content -->
+  <div class="container-fluid mt--6">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <!-- Card header -->
+          <div class="card-header border-0">
+            <h3 class="mb-0"> Explanation (Multi-Choice)</h3>
+            <p>Task: Select the most corresponding reason why this statement is against common sense.</p>
+            <br>
+            <p>Given an illogical statement, the trained NLP model have to choose the best of 3 explanations as to why the sentence is illogical. </p>
+          </div>
+          <!-- Light table -->
+          <div class="table-responsive">
+            <form action="{{ url_for('base_blueprint.predictB')}}"method="post">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col" class="sort" data-sort="name">Index</th>
+                  <th scope="col" class="sort" data-sort="budget">Sentence</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody class="list">
+                <th scope="row">
+                  Reference
+                </th>
+                <td class="budget">
+                  <div class="card-body" data-select2-id="6">   
+                    <select name="falseSent"  class="form-control select2-hidden-accessible" data-toggle="select" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                      {% for sent in subtaskB %}
+                      <option  value= '{{ sent.falseSent }}'> {{ sent.falseSent }}</option>
+                      {% endfor %}
+                    </select>
+                </div>
+
+                </td>
+                
+                <tr>
+                  <th scope="row">
+                    1
+                  </th>
+                  <td class="budget">
+                    <div class="card-body" data-select2-id="6">   
+                      <select name="sent0"  class="form-control select2-hidden-accessible" data-toggle="select" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        {% for sent in subtaskB %}
+                        <option  value= '{{ sent.sent0 }}'> {{ sent.sent0 }}</option>
+                        {% endfor %}
+                      </select>
+                  </div>
+
+                  </td>
+                </tr>
+                
+                  <th scope="row">
+                    2
+                  </th>
+                  <td class="budget">
+                    <div class="card-body" data-select2-id="6">
+                      <select name="sent1" class="form-control select2-hidden-accessible" data-toggle="select" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        {% for sent in subtaskB %}
+                        <option  value= '{{ sent.sent1 }}'> {{ sent.sent1 }}</option>
+                        {% endfor %}
+                      </select>
+                 
+                  </div>
+                  </td>
+                  </tr>
+                  <th scope="row">
+                    3
+                  </th>
+                  <td class="budget">
+                    <div class="card-body" data-select2-id="6">
+                      <select name="sent2" class="form-control select2-hidden-accessible" data-toggle="select" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        {% for sent in subtaskB %}
+                        <option  value= '{{ sent.sent2 }}'> {{ sent.sent2 }}</option>
+                        {% endfor %}
+                      </select>
+                 
+                  </div>
+                  </td>
+                  <td>
+                    <button type="submit" class="btn btn-primary btn-block btn-large">Validate</button>
+                  </td>
+                  </tr>
+                  
+              </tbody>
+            </table>
+          </form>
+            <div class="card-header border-0">
+              {% if flag == 1 %}
+              <h3 class="mb-0">The model is 80% certain that explanation 1 is correct. </h3>
+              <br>
+              <p>False Sentence: {{falseSent}}</p>
+              <p>Explaination 1: {{sent0}} </p>
+              <p>Explaination 2: {{sent1}}</p>
+              <p>Explaination 3: {{sent2}}</p>
+              {% endif %}
+            </div>
+          </div>
+          <!-- Card footer -->
+          
+        </div>
+      </div>
+    </div>
+    <!-- Dark table -->
+    
+
+    
+
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

@@ -1,0 +1,106 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Subtask C {% endblock title %}
+
+{% block content %}
+
+  <div class="header bg-primary pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-6 col-7">
+            <h6 class="h2 text-white d-inline-block mb-0">Subtask C</h6>
+            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+              <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="#">Task</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Subtask C</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Page content -->
+  <div class="container-fluid mt--6">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <!-- Card header -->
+          <div class="card-header border-0">
+            <h3 class="mb-0">Explanation (Generation)</h3>
+            <p>Task: Generate the reason why this statement is against common sense.</p>
+            <br>
+            <p>Given an illogical statement, the trained NLP model have to generate a novel explanation as to why the statement is illogical.</p>
+          </div>
+          <!-- Light table -->
+          <div class="table-responsive">
+            <form action="{{ url_for('base_blueprint.predictC')}}"method="post">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col" class="sort" data-sort="name">Index</th>
+                  <th scope="col" class="sort" data-sort="budget">Sentence</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody class="list">
+                
+                <tr>
+                  <th scope="row">
+                    1
+                  </th>
+                  <td class="budget">
+                    <div class="card-body" data-select2-id="6">
+                      <select name="falseSent" class="form-control select2-hidden-accessible" data-toggle="select" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        {% for sent in subtaskC %}
+                        <option  value= '{{ sent.falseSent}}'> {{ sent.falseSent }}</option>
+                        {% endfor %}
+                      </select>
+                 
+                    </div>
+
+                  </td>
+                </tr>
+                <td>
+                  <td>
+                    <button type="submit" class="btn btn-primary btn-block btn-large">Generate Explaination</button>
+                  </td>
+                </td>
+                  
+              </tbody>
+            </table>
+          </form>
+            <div class="card-header border-0">
+              {% if prediction_text|length > 0 %}
+
+              <h3 class="mb-0">The selected sentence: "{{chosenSent}}"  doesnt make sense because... </h3>
+              <br>
+              {% for pred in prediction_text %}
+              <p>{{ pred }} </p>
+              {% endfor %}
+
+              {% endif %}
+            </div>
+          </div>
+          <!-- Card footer -->
+          
+        </div>
+      </div>
+    </div>
+    <!-- Dark table -->
+    
+
+    
+
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}
