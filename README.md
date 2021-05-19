@@ -16,7 +16,7 @@ is illogical.
 <br />
 
 
-![Subtask A Demo](https://raw.githubusercontent.com/app-generator/flask-boilerplate-dashboard-argon/master/media/flask-boilerplate-dashboard-argon-screen.png)
+![Subtask A Demo](https://github.com/JustinLee38/common-sense-reasoning/blob/1c73c6be7c5d656a263f7748afb84e47ea538846/media/subtaskA.JPG)
 
 <br />
 
